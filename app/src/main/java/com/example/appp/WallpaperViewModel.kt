@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.asStateFlow
 
 enum class IntervalUnit(val label:String,val millis:Long){MINUTES("דקות",60000L),HOURS("שעות",3600000L),DAYS("ימים",86400000L)}
 enum class Target{HOME,LOCK,BOTH}
-data class WallpaperState(val wallpapers:List<String>=listOf("builtin:blue","builtin:sunset","builtin:green","builtin:purple"),val selected:Set<String>=emptySet(),val interval:Int=30,val unit:IntervalUnit=IntervalUnit.MINUTES,val target:Target=Target.BOTH,val running:Boolean=false)
+data class WallpaperState(val wallpapers: List<String> =listOf("builtin:blue","builtin:sunset","builtin:green","builtin:purple"),val selected: Set<String> =emptySet(),val interval: Int =30,val unit: IntervalUnit =IntervalUnit.MINUTES,val target: Target =Target.BOTH,val running: Boolean =false)
 
 class WallpaperViewModel:ViewModel(){
  private val flow=MutableStateFlow(WallpaperState())
- val state:StateFlow<WallpaperState>=flow.asStateFlow()
+ val state: StateFlow<WallpaperState> =flow.asStateFlow()
  private var prefs:SharedPreferences?=null
  fun addWallpapers(u:List<String>){val s=flow.value;flow.value=s.copy(wallpapers=(s.wallpapers+u.map{"uri:$it"}).distinct());save()}
  fun removeWallpaper(x:String){val s=flow.value;flow.value=s.copy(wallpapers=s.wallpapers-x,selected=s.selected-x);save()}
