@@ -49,6 +49,7 @@ class MainActivity:ComponentActivity(){
   }
  }
 }
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable fun UnitMenu(u:IntervalUnit,on:(IntervalUnit)->Unit){var e by remember{mutableStateOf(false)};Box{OutlinedButton({e=true}){Text(u.label)};DropdownMenu(e,{e=false}){IntervalUnit.entries.forEach{DropdownMenuItem({Text(it.label)},{on(it);e=false})}}}}
 @Composable fun TargetBtn(t:String,sel:Boolean,on:()->Unit){OutlinedButton(on){if(sel)Icon(Icons.Default.Check,null);Text(t)}}
-@Composable fun Preview(x:String,m:Modifier){when(x){"builtin:blue"->Box(m.background(Brush.linearGradient(listOf(Color(0xFF1565C0),Color(0xFF64B5F6)))));"builtin:sunset"->Box(m.background(Brush.horizontalGradient(listOf(Color(0xFFFF6F00),Color(0xFFFFB300),Color(0xFF5E35B1)))));"builtin:green"->Box(m.background(Brush.linearGradient(listOf(Color(0xFF1B5E20),Color(0xFF66BB6A)))));else->Box(m.background(Color.LightGray))}}
+@Composable fun Preview(x:String,m:Modifier){when(x){"builtin:blue"->Box(m.background(Brush.linearGradient(listOf(Color(0xFF1565C0),Color(0xFF64B5F6)))));"builtin:sunset"->Box(m.background(Brush.horizontalGradient(listOf(Color(0xFFFF6F00),Color(0xFFFFB300),Color(0xFF5E35B1)))));"builtin:green"->Box(m.background(Brush.linearGradient(listOf(Color(0xFF1B5E20),Color(0xFF66BB6A))));else->Box(m.background(Color.LightGray))}}
